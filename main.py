@@ -5,6 +5,11 @@ from fastapi import FastAPI, UploadFile, File
 app = FastAPI()
 
 
+@app.get("/")
+async def root():
+    return {"message": "Welcome to upload API"}
+
+
 @app.post("/")
 async def upload_file(file: UploadFile = File(...)):
     filepath = os.path.join("uploads", file.filename)
